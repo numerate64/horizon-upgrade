@@ -1,0 +1,15 @@
+# Never commit environment evidence or secrets to this public runbook.
+*.pfx
+*.p12
+*.key
+*.pem
+*.csr
+*.zip
+*.iso
+*.dmp
+*.log
+.env
+secrets/
+recovery/
+diagnostics/
+inventory/
