@@ -1,6 +1,6 @@
-# Omnissa Horizon 8 2606 Upgrade Runbook
+# Omnissa Horizon 8 2503 Subscription Upgrade Runbook
 
-A public-safe execution plan for upgrading a Horizon 8 environment to Horizon 8 2606. It intentionally excludes topology, hostnames, IP addresses, certificate data, credentials, backup exports, and collected inventory.
+A public-safe execution plan for upgrading a Horizon 8 environment to Horizon 8 2503 Subscription (8.15.0, build 14365030791). It intentionally excludes topology, hostnames, IP addresses, certificate data, credentials, backup exports, and collected inventory.
 
 ## Scope
 
@@ -12,13 +12,13 @@ A public-safe execution plan for upgrading a Horizon 8 environment to Horizon 8 
 ## Before using this runbook
 
 1. Confirm the exact source and target versions in the current [Omnissa interoperability matrix](https://docs.omnissa.com/Horizon8InstallUpgrade/CompatibilityMatrixforVariousVersionsofHorizon8Components).
-2. Read the relevant Horizon 8 2606 release notes and installation/upgrade documentation.
+2. Read the relevant Horizon 8 2503 release notes and installation/upgrade documentation.
 3. Replace every placeholder in the runbook with approved, environment-specific information in a private change record.
 4. Do not store exports, passwords, private keys, installers, database backups, or inventory results in this public repository.
 
 ## Execution plan
 
-See [the detailed runbook](docs/horizon-2606-execution-runbook.md). It includes change gates, responsibilities, ordered procedures, validation, rollback decisions, and a closeout checklist.
+See [the detailed runbook](docs/horizon-2503-execution-runbook.md). It includes change gates, responsibilities, ordered procedures, validation, rollback decisions, and a closeout checklist.
 
 ## Safety model
 

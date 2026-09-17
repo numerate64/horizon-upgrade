@@ -1,7 +1,8 @@
-# Horizon 8 2606 Execution Runbook
+# Horizon 8 2503 Subscription Execution Runbook
 
 > **Change type:** production maintenance
-> **Target:** Omnissa Horizon 8 2606 and compatible UAG 2606
+> **Target:** Omnissa Horizon 8 2503 Subscription (8.15.0, build 14365030791)
+> **UAG target:** a separately selected version confirmed compatible with both the current and target Horizon versions.
 > **Out of scope:** vCenter/ESXi upgrade, certificate redesign, DNS renaming, and non-Horizon platform changes.
 
 ## 1. Change control
@@ -24,6 +25,7 @@ All gates must be green before starting production changes.
 | Gate | Evidence required | Owner |
 | --- | --- | --- |
 | Compatibility | Documented source-to-target compatibility for Connection Server, Agent, UAG, Connection Server OS, vCenter, and ESXi. | Horizon admin |
+| Subscription license | Valid Omnissa subscription license activated before the server upgrade. Horizon 2503 has no 15-day subscription grace period. | Change owner |
 | Baseline | Dated read-only inventory: servers, pools, agents, farms/add-ons, vCenter/ESXi, certificates, and current health. | Horizon/vSphere admins |
 | Horizon health | Connection Server replication healthy; no unresolved critical alarms; vCenter connectivity and provisioning confirmed. | Horizon admin |
 | Recovery | Recent, recoverable VCSA file backup; Events DB full backup plus restore verification; UAG JSON/INI export; separately retained certificates, keys, Keytabs, and shared secrets. | vSphere/DBA/network admins |
@@ -39,7 +41,7 @@ All gates must be green before starting production changes.
 2. Capture final health evidence: Connection Server replication, pool state, desktop state, vCenter connectivity, provisioning state, and UAG health.
 3. Confirm all backup artifacts are dated, stored in approved private storage, and recoverable by their designated owners.
 4. Verify that no critical desktop session or business process will be interrupted; obtain business approval if a disconnect is necessary.
-5. Download installers from Omnissa, verify SHA-256 checksums, and stage them on approved administration hosts.
+5. Confirm the Omnissa subscription license is active, then download the Horizon 2503 installers from Omnissa, verify SHA-256 checksums, and stage them on approved administration hosts.
 6. Document the currently published UAG path and do not remove the existing appliance.
 
 ## 4. Connection Server upgrade
@@ -47,7 +49,7 @@ All gates must be green before starting production changes.
 Upgrade one Connection Server at a time; keep the peer available whenever the documented procedure permits.
 
 1. Place the first server into maintenance according to the current Omnissa upgrade guide. Drain/disable new connections as appropriate.
-2. Run the approved Horizon 8 2606 Connection Server installer as an administrator, preserving the existing AD LDS instance and configuration.
+2. Run the approved Horizon 8 2503 Connection Server installer as an administrator, preserving the existing AD LDS instance and configuration.
 3. Reboot only if required by the installer.
 4. Validate the upgraded server before touching the peer:
    - service health and version;
@@ -80,7 +82,7 @@ Upgrade one Connection Server at a time; keep the peer available whenever the do
 ## 6. Horizon Agent pilot and rollout
 
 1. Select one available, representative desktop. Record its current agent version and recovery method.
-2. Install the Horizon 8 2606 Agent using the approved feature set and reboot if required.
+2. Install the Horizon 8 2503 Agent using the approved feature set and reboot if required.
 3. Validate with the test owner:
    - client login and desktop launch;
    - Blast and every enabled protocol;
@@ -97,7 +99,7 @@ Upgrade one Connection Server at a time; keep the peer available whenever the do
 
 | Test | Acceptance result |
 | --- | --- |
-| Connection Server versions | Every server reports the planned 2606 build. |
+| Connection Server versions | Every server reports the planned 2503 build. |
 | Replication | Healthy across all Connection Servers. |
 | Internal access | Authentication and desktop launch succeed. |
 | External access | Authentication and desktop launch succeed through the new UAG. |
